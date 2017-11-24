@@ -28,6 +28,7 @@ const routes = [
   router.get("/api/validate", e2e.validate)
 ];
 
+// Initialize Server
 const { start, stop } = init({
   port: process.env.PORT,
   routes,
@@ -37,8 +38,9 @@ const { start, stop } = init({
 // Start the server
 start().catch(console.error);
 
-// Poll the validate service endpoint to continuously validate the service.  Ideally,
-// this is code is run in another process or on another server.
+// Initialize always-on tests
+
+// This is code should be run in another process/another server.
 function validateService() {
   fetch(`http://localhost:${process.env.PORT}/api/validate`);
 }
